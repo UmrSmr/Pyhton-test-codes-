@@ -1,21 +1,16 @@
-def compute_average():
+def compound_interest():
     try:
-        count = int(input("How many numbers do you want to enter? "))
+        principal = float(input("Enter initial amount: "))
+        years = int(input("Enter number of years: "))
+        rate = float(input("Enter interest rate (percent per year): "))
 
-        if count <= 0:
-            print("Please enter a number greater than 0.")
-            return
+        amount = principal
+        for _ in range(years):
+            amount += amount * (rate / 100)
 
-        total = 0.0
-        for i in range(1, count + 1):
-            num = float(input(f"Enter number {i}: "))
-            total += num
-
-        average = total / count
-        print(f"\nThe average of the {count} numbers is: {average:.2f}")
-
+        print(f"At the end of {years} years, you will have {amount:.2f} dollars.")
     except ValueError:
-        print("Invalid input! Please enter numeric values only.")
+        print("Invalid input! Please enter numeric values.")
 
 if __name__ == "__main__":
-    compute_average()
+    compound_interest()
