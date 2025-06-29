@@ -1,0 +1,48 @@
+def take_attendance():
+    attendance = {}
+    print("Enter student names and attendance (P for Present, A for Absent).")
+    print("Type 'check' when you're done and want to check attendance status.\n")
+
+    while True:
+        name = input("Enter student name (or type 'check' to stop): ").strip()
+        if name.lower() == 'check':
+            break
+        if not name:
+            print("Name cannot be empty. Try again.")
+            continue
+
+        status = input(f"Mark attendance for {name} (P/A): ").strip().upper()
+        if status not in ['P', 'A']:
+            print("Invalid input! Use 'P' for Present or 'A' for Absent.")
+            continue
+
+        attendance[name] = 'Present' if status == 'P' else 'Absent'
+
+    return attendance
+
+def display_summary(attendance):
+    present = sum(1 for status in attendance.values() if status == 'Present')
+    absent = sum(1 for status in attendance.values() if status == 'Absent')
+
+    print("\n--- Attendance Summary ---")
+    print(f"Total Present: {present}")
+    print(f"Total Absent : {absent}")
+
+def check_attendance(attendance):
+    while True:
+        name = input("\nEnter student name to check (or type 'exit' to stop): ").strip()
+        if name.lower() == 'exit':
+            break
+        status = attendance.get(name)
+        if status:
+            print(f"{name} is {status}")
+        else:
+            print(f"{name} not found in attendance list.")
+
+def main():
+    attendance = take_attendance()
+    display_summary(attendance)
+    check_attendance(attendance)
+
+if __name__ == "__main__":
+    main()
