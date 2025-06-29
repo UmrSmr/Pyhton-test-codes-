@@ -1,0 +1,16 @@
+def reverse_number():
+    try:
+        num = int(input("Enter a number between 1 and 999: "))
+
+        if num <= 0 or num >= 1000:
+            print("Error: Number must be greater than 0 and less than 1000.")
+            return
+
+        reversed_num = int(str(num)[::-1])
+        print(f"Reversed number: {reversed_num}")
+
+    except ValueError:
+        print("Invalid input! Please enter a valid integer.")
+
+if __name__ == "__main__":
+    reverse_number()
